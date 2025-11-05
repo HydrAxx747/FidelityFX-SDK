@@ -26,7 +26,13 @@
 extern "C" {
 #endif  // #if defined(__cplusplus)
 
-#define FFX_API_ENTRY __declspec(dllexport)
+#ifndef FFX_API_ENTRY
+#  if defined(_WIN32) || defined(_WIN64)
+#    define FFX_API_ENTRY __declspec(dllexport)
+#  else
+#    define FFX_API_ENTRY
+#  endif
+#endif
 
 #include <stdint.h>
 

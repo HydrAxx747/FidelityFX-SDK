@@ -73,7 +73,7 @@ Depending on your target hardware and operating configuration FSR will operate a
 | 1920x1080         |   352us          |
 
 <h3>Memory requirements</h3>
-Using FSR requires some additional GPU local memory to be allocated for consumption by the GPU. When using the FSR API, this memory is allocated when the FSR context is created, and is done so via the series of callbacks which comprise the backend interface. This memory is used to store intermediate surfaces which are computed by the FSR algorithm as well as surfaces which are persistent across many frames of the application. The table below includes the amount of memory used by FSR under various operating conditions.
+Using FSR requires some additional GPU local memory to be allocated for consumption by the GPU. When using the FSR API, this memory is allocated when the FSR context is created, and is done so via the series of callbacks which comprise the backend interface. This memory is used to store intermediate surfaces which are computed by the FSR algorithm as well as surfaces which are persistent across many frames of the pplication. The table below includes the amount of memory used by FSR under various operating conditions.
 
 | Resolution | Working set (MB) |
 | -----------|------------------|
