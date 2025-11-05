@@ -286,7 +286,7 @@ static FfxShaderBlob fsr3UpscalerGetAutogenReactivePassPermutationBlobByIndex(
     }
 }
 
-static FfxShaderBlob fsr3UpscalerGetShadingChangePyramidPassPermutationBlobByIndex(uint32_t permutationOptions, bool isWave64, bool)
+static FfxShaderBlob fsr3UpscalerGetShadingChangePyramidPassPermutationBlobByIndex(uint32_t permutationOptions, bool isWave64, bool is16bit)
 {
     ffx_fsr3upscaler_shading_change_pyramid_pass_PermutationKey key;
 
@@ -294,13 +294,23 @@ static FfxShaderBlob fsr3UpscalerGetShadingChangePyramidPassPermutationBlobByInd
 
     if (isWave64)
     {
-        const int32_t tableIndex = g_ffx_fsr3upscaler_shading_change_pyramid_pass_wave64_IndirectionTable[key.index];
-        return POPULATE_SHADER_BLOB_FFX(g_ffx_fsr3upscaler_shading_change_pyramid_pass_wave64_PermutationInfo, tableIndex);
+        if (is16bit) {
+            const int32_t tableIndex = g_ffx_fsr3upscaler_shading_change_pyramid_pass_wave64_16bit_IndirectionTable[key.index];
+            return POPULATE_SHADER_BLOB_FFX(g_ffx_fsr3upscaler_shading_change_pyramid_pass_wave64_16bit_PermutationInfo, tableIndex);
+        } else {
+            const int32_t tableIndex = g_ffx_fsr3upscaler_shading_change_pyramid_pass_wave64_IndirectionTable[key.index];
+            return POPULATE_SHADER_BLOB_FFX(g_ffx_fsr3upscaler_shading_change_pyramid_pass_wave64_PermutationInfo, tableIndex);
+        }
     }
     else
     {
-        const int32_t tableIndex = g_ffx_fsr3upscaler_shading_change_pyramid_pass_IndirectionTable[key.index];
-        return POPULATE_SHADER_BLOB_FFX(g_ffx_fsr3upscaler_shading_change_pyramid_pass_PermutationInfo, tableIndex);
+        if (is16bit) {
+            const int32_t tableIndex = g_ffx_fsr3upscaler_shading_change_pyramid_pass_16bit_IndirectionTable[key.index];
+            return POPULATE_SHADER_BLOB_FFX(g_ffx_fsr3upscaler_shading_change_pyramid_pass_16bit_PermutationInfo, tableIndex);
+        } else {
+            const int32_t tableIndex = g_ffx_fsr3upscaler_shading_change_pyramid_pass_IndirectionTable[key.index];
+            return POPULATE_SHADER_BLOB_FFX(g_ffx_fsr3upscaler_shading_change_pyramid_pass_PermutationInfo, tableIndex);
+        }
     }
 }
 
